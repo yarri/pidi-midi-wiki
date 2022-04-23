@@ -8,6 +8,13 @@ class MainController extends ApplicationController{
 	 * See default layout: app/layouts/default.tpl
 	 */
 	function index(){
+		$this->_redirect_to([
+			"controller" => "wiki_pages",
+			"action" => "detail",
+			"name" => "Index",
+		]);
+		return;
+
 		$this->page_title = _("Welcome!");
 
 		$page = $this->tpl_data["page"] = Page::GetInstanceByCode("homepage");
