@@ -34,7 +34,7 @@ class AdminController extends ApplicationBaseController{
 			array(_("Password recoveries"),	"password_recoveries"),
 			array(_("Newsletter subscribers"), "newsletter_subscribers"),
 			array(_("404 Redirections"),				"error_redirections"),
-			array(_("Wiki Pages"),				"wiki_pages"),
+			array(_("Wiki Pages"),				"wiki_pages,wiki_attachments"),
 		) as $item){
 			$_label = $item[0];
 			$_controllers = explode(',',$item[1]); // "products,cards" => array("products","cards");
