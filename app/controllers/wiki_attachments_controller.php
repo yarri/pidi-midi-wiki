@@ -1,61 +1,45 @@
 <?php
+if(!defined("WIKI_BODY_MAX_WIDTH")){
+	define("WIKI_BODY_MAX_WIDTH",defined("ARTICLE_BODY_MAX_WIDTH") ? constant("ARTICLE_BODY_MAX_WIDTH") : 859);
+}
+
 class WikiAttachmentsController extends ApplicationController {
 
-	function create_new(){
-		$this->page_title = _("Nahrání nové přílohy");
-
-		$wiki_page = $this->_find("wiki_page","wiki_page_id");
-		if(!$wiki_page){
-			return;
-		}
-		$this->breadcrumbs[] = [$wiki_page->getTitle(),["action" => "wiki_pages/detail", "name" => $wiki_page->getName()]];
-
-		if($this->request->post() && ($d = $this->form->validate($this->params))){
-			$filename = $d["file"]->getFileName(["sanitize" => false]);
-			myAssert(Translate::CheckEncoding($filename,DEFAULT_CHARSET));
-			$existing = WikiAttachment::FindFirst("wiki_page_id",$wiki_page,"filename",$filename);
-			if($existing && !$d["replace_existing"]){
-				$this->form->set_error("file",sprintf(_("Příloha se stejným názvem (%s) u této stránky již existuje"),h($filename)));
-				return;
-			}
-			if($existing){
-				$existing->setContent($d["file"]->getContent());
-				$this->flash->info(_("Příloha byla nahrazena"));
-			}else{
-				WikiAttachment::CreateNewRecord([
-					"wiki_page_id" => $wiki_page,
-					"filename" => $filename,
-					"content" => $d["file"]->getContent(),
-				]);
-				$this->flash->info(_("Příloha byla nahrána"));
-			}
-
-			$this->_redirect_to(["action" => "wiki_pages/detail", "name" => $wiki_page->getName()]);
-		}
-	}
-
 	function detail(){
+		$ALLOWED_SIZES = [
+			"full" => WIKI_BODY_MAX_WIDTH,
+			"half" => ceil(WIKI_BODY_MAX_WIDTH/2),
+			"quarter" => ceil(WIKI_BODY_MAX_WIDTH/4),
+		];
+
 		$wiki_attachment = $this->wiki_attachment;
 
-		$this->render_template = false;
+		$format = (string)$this->params->getString("format");
+		$size = (string)$this->params->getString("size");
+
+		if(!in_array($format,[
+			"",
+			"thumbnail",
+		])){
+			return $this->_not_found();
+		}
+
+		if($size && !in_array($size,array_keys($ALLOWED_SIZES))){
+			return $this->_not_found();
+		}
+
+		if($format && $size){
+			return $this->_not_found();
+		}
 
 		$tmp_filename = $wiki_attachment->getTmpFilename();
+		$this->render_template = false;
 
-		if($this->params->getString("format")=="thumbnail"){
+		if($format == "thumbnail"){
 			if($wiki_attachment->isImage()){
-				if(file_exists($tmp_filename.".xthumbnail")){
-					$tmp_filename = $tmp_filename.".xthumbnail";
-				}else{
-					try {
-						$scaler = new \Pupiq\ImageScaler($tmp_filename);
-						if($scaler->scaleTo(80,80,["background_color" => "#ffffff"])){
-							$scaler->saveTo($tmp_filename.".xthumbnail");
-							$tmp_filename = $tmp_filename.".xthumbnail";
-						}
-					}catch(Exception $e){
-						// ...
-					}
-				}
+
+				$this->_resize_image($tmp_filename,80,80,["background_color" => "#ffffff"]);
+
 			}else{
 				
 				// https://icon-icons.com/icon/empty-file/72420
@@ -66,21 +50,16 @@ class WikiAttachmentsController extends ApplicationController {
 			}
 		}
 
+		if($size){
+			if($wiki_attachment->isImage()){
+				$this->_resize_image($tmp_filename,$ALLOWED_SIZES[$size]);
+			}
+		}
+
+		$this->render_template = false;
 		$this->response->setHeader("Content-Type",$wiki_attachment->getMimeType());
 		$this->response->setHeader(sprintf('Content-Disposition: inline; filename="%s"',$wiki_attachment->getFilename()));
 		$this->response->buffer->addFile($tmp_filename);
-	}
-
-	function destroy(){
-		if(!$this->request->post()){ return $this->_execute_action("error404"); }
-
-		$wiki_page = $this->wiki_attachment->getWikiPage();
-
-		$this->wiki_attachment->destroy();
-
-		if(!$this->request->xhr()){
-			$this->_redirect_to(["action" => "wiki_pages/detail", "name" => $wiki_page->getName()]);
-		}
 	}
 
 	function _before_filter(){
@@ -92,5 +71,34 @@ class WikiAttachmentsController extends ApplicationController {
 			if(!$wiki_attachment){ return $this->_execute_action("error404"); }
 			$this->wiki_attachment = $this->tpl_data["wiki_attachment"] = $wiki_attachment;
 		}
+	}
+
+	function _not_found(){
+		$this->render_template = false;
+		$this->response->setContentType("text/html");
+		$this->response->notFound();
+	}
+
+	function _resize_image(&$tmp_filename,$width,$height = null,$options = []){
+		$_tmp_filename = $tmp_filename.".x".md5(serialize(["width" => $width, "height" => $height, "options" => $options]));
+
+		if(file_exists($_tmp_filename)){
+			// the image is already resized
+			$tmp_filename = $_tmp_filename;
+			return true;
+		}
+
+		try {
+			$scaler = new \Pupiq\ImageScaler($tmp_filename);
+			if($scaler->scaleTo($width,$height,$options)){
+				$scaler->saveTo($_tmp_filename);
+				$tmp_filename = $_tmp_filename;
+				return true;
+			}
+		}catch(Exception $e){
+			// ...
+		}
+
+		return false;
 	}
 }

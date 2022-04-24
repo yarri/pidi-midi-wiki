@@ -1,31 +1,16 @@
-{if $current_revision!=$latest_revision}
-	<meta name="robots" content="noindex,noarchive">
-{/if}
+<div class="wiki">
 
-<div class="row">
+{dropdown_menu clearfix=false}
+	{if $wiki_page->isEditableBy($logged_user)}
+		{a namespace="admin" action="edit" id=$wiki_page}{!"edit"|icon} {t}Edit{/t}{/a}
+	{/if}
+	{if $wiki_page->isDeletableBy($logged_user)}
+		{a namespace="admin" action="destroy" id=$wiki_page}{!"remove"|icon} {t}Delete{/t}{/a}
+	{/if}
+{/dropdown_menu}
 
-	<div class="col-sm-8">
+<h1>{$wiki_page->getTitle()}</h1>
 
-		<div class="wiki">
-		{dropdown_menu clearfix=false}
-			{if $wiki_page->isEditableBy($logged_user)}
-				{a action="edit" id=$wiki_page}{!"edit"|icon} {t}Edit{/t}{/a}
-			{/if}
-			{if $wiki_page->isDeletableBy($logged_user)}
-				{a action="destroy" id=$wiki_page}{!"remove"|icon} {t}Delete{/t}{/a}
-			{/if}
-		{/dropdown_menu}
-		<h1>{$wiki_page->getTitle()}</h1>
-
-		{!$content}
-		</div>
-
-	</div>
-
-	<div class="col-sm-4">
-
-		{render partial="sidebar"}
-
-	</div>
+{!$content}
 
 </div>

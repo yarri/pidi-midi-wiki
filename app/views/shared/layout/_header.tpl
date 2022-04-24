@@ -8,6 +8,11 @@
 				<span class="h1">{$appname}</span>
 			{/if}
 		{/a}		
+
+		<form action="{link_to action="wiki_pages/index"}" method="get">
+			<input type="text" name="search" class="search text form-control" style="float: left; width: 150px;">&nbsp;<button type="submit" class="btn btn-default">{t}Hledat{/t}</button>
+		</form>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			{!"bars"|icon}
 		</button>

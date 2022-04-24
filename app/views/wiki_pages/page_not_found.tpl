@@ -1,24 +1,15 @@
-<div class="row">
+<div class="wiki">
 
-	<div class="col-sm-8">
+<h1 class="text-muted">{$name}</h1>
 
+<p>
+	{t name=$name|h escape=no}Stránka <em>%1</em> neexistuje.{/t}
+</p>
 
-		<h1 class="text-muted">{$name}</h1>
-
-		<p>
-			{t name=$name|h escape=no}Stránka <em>%1</em> neexistuje.{/t}
-		</p>
-
-		<p>
-			{a action="create_new" name=$name _class="btn btn-default"}{t}Vytvořit stránku?{/t}{/a}
-		</p>
-
-	</div>
-
-	<div class="col-sm-4">
-
-		{render partial="sidebar"}
-
-	</div>
+{if $logged_user && $logged_user->isAdmin()}
+<p>
+	{a namespace="admin" action="create_new" name=$name _class="btn btn-default"}{t}Vytvořit stránku?{/t}{/a}
+</p>
+{/if}
 
 </div>

@@ -43,7 +43,7 @@ definedef("USER_REGISTRATION_ENABLED",true);
 definedef("PUPIQ_API_KEY","101.DemoApiKeyForAccountWithLimitedFunctions");
 definedef("PUPIQ_HTTPS",REDIRECT_TO_SSL_AUTOMATICALLY);
 
-definedef("ARTICLE_BODY_MAX_WIDTH",825);
+definedef("ARTICLE_BODY_MAX_WIDTH",1400);
 
 // == hCaptcha ==
 // If these two constant are properly defined (see https://github.com/atk14/HcaptchaField#installation),
