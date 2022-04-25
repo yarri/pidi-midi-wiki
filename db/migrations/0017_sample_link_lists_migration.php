@@ -2,10 +2,13 @@
 class SampleLinkListsMigration extends ApplicationMigration {
 
 	function up(){
+		
 		$main_menu = LinkList::CreateNewRecord([
 			"system_name" => "Main menu",
 			"code" => "main_menu",
 		]);
+
+		/* not on pidi-midi-wiki
 
 		LinkListItem::CreateNewRecord([
 			"link_list_id" => $main_menu,
@@ -28,6 +31,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"url" => "/about-us/contact-data/"
 		]);
 
+		*/
+
 		// ---
 
 		$footer_1 = LinkList::CreateNewRecord([
@@ -36,6 +41,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"title_en" => "Footer Links",
 			"title_cs" => "Odkazy v patičce"
 		]);
+
+		/* not on pidi-midi-wiki
 
 		LinkListItem::CreateNewRecord([
 			"link_list_id" => $footer_1,
@@ -58,6 +65,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"url" => "/#",
 		]);
 
+		*/
+
 		// ---
 
 		$footer_2 = LinkList::CreateNewRecord([
@@ -66,6 +75,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"title_en" => "Another Links",
 			"title_cs" => "Další odkazy"
 		]);
+
+		/* not on pidi-midi-wiki
 
 		LinkListItem::CreateNewRecord([
 			"link_list_id" => $footer_2,
@@ -88,6 +99,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"url" => "/#",
 		]);
 
+		*/
+
 		// ---
 
 		$footer_3 = LinkList::CreateNewRecord([
@@ -96,6 +109,8 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"title_en" => "Yet Another Links",
 			"title_cs" => "Ještě další odkazy"
 		]);
+
+		/* not on pidi-midi-wiki
 
 		LinkListItem::CreateNewRecord([
 			"link_list_id" => $footer_3,
@@ -117,5 +132,7 @@ class SampleLinkListsMigration extends ApplicationMigration {
 			"title_cs" => "Odkaz 9",
 			"url" => "/#",
 		]);
+
+		*/
 	}
 }

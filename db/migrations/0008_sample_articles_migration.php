@@ -3,6 +3,8 @@ class SampleArticlesMigration extends ApplicationMigration{
 
 	function up(){
 
+		return; // not on pidi-midi-wiki
+
 		$news = Tag::GetInstanceByCode("news");
 		
 		// *** Happy Millenium ***

@@ -4,6 +4,8 @@ class FulfillingPagesMigration extends ApplicationMigration{
 	function up(){
     if(TEST){ return; }
 
+		return; // not on pidi-midi-wiki
+
 		$homepage = Page::CreateNewRecord(array(
 			"code" => "homepage",
 
