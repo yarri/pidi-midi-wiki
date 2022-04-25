@@ -1,1 +1,30 @@
-../../vendor/atk14/wiki-pages/src/public/admin/styles/_wiki_pages.scss
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+
+.wiki {
+	font-family: $font-family-serif;
+	font-size: 18px;
+	line-height: 1.6em;
+	p {
+		text-align: justify;
+		img {
+			float: left;
+			padding: 0 1rem 1rem 0;
+		}
+	}
+
+	h1, h2, h3, h4 {
+		font-family: $font-family-sans-serif;
+	}
+	h2, h3, h4 {
+		font-weight: bold;
+	}
+	img {
+		@extend .img-fluid;
+	}
+
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
