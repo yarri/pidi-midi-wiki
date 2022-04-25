@@ -48,7 +48,7 @@ class WikiPagesController extends ApplicationController {
 	}
 
 	function detail(){
-		$name = $this->params->getString("name");
+		$name = $this->breadcrumbs[] = $this->params->getString("name");
 		if(!strlen($name)){ return $this->_redirect_to_index(); }
 
 		if(!$wiki_page = $this->_find_wiki_page($name)){
