@@ -38,7 +38,7 @@ definedef("REDIRECT_TO_CORRECT_HOSTNAME_AUTOMATICALLY",false);
 // definedef("INVITATION_CODE_FOR_USER_REGISTRATION","some great secret");
 
 // Or if you don't want to let users to register at all, set USER_REGISTRATION_ENABLED to false.
-definedef("USER_REGISTRATION_ENABLED",true);
+definedef("USER_REGISTRATION_ENABLED",false);
 
 definedef("PUPIQ_API_KEY","101.DemoApiKeyForAccountWithLimitedFunctions");
 definedef("PUPIQ_HTTPS",REDIRECT_TO_SSL_AUTOMATICALLY);
