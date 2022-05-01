@@ -69,7 +69,9 @@ class WikiPagesController extends ApplicationController {
 			return $this->_execute_action("error404");
 		}
 		
-		$this->breadcrumbs[] = $wiki_page->getName();
+		if($wiki_page->getName()!="Index"){
+			$this->breadcrumbs[] = $wiki_page->getName();
+		}
 
 		$revision = $wiki_page->getRevision();
 

@@ -135,7 +135,7 @@ class ApplicationBaseController extends Atk14Controller{
 		$ATK14_GLOBAL->setValue("logged_user",$this->logged_user); // we need this in app/helpers/function.admin_menu.php
 
 		$this->breadcrumbs = new Menu14();
-		$this->breadcrumbs[] = array(_("Home"),$this->_link_to(array("namespace" => "", "action" => "main/index")));
+		$this->breadcrumbs[] = array(_("Home"),$this->_link_to(array("namespace" => "", "action" => "wiki_pages/detail", "name" => "Index")));
 
 		if($this->_logged_user_required() && !$this->logged_user){
 			return $this->_execute_action("error403");
