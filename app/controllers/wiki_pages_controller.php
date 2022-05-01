@@ -14,6 +14,7 @@ class WikiPagesController extends ApplicationController {
 		$conditions[] = "wiki_name=:wiki_name";
 		$bind_ar[":wiki_name"] = $this->wiki_name;
 		$conditions[] = "NOT deleted";
+		$conditions[] = "name NOT IN ('Error404','Error403')";
 
 		$conditions[] = "revision=(SELECT MAX(revision) FROM wiki_pages wp WHERE wp.name=wiki_pages.name AND wp.wiki_name=wiki_pages.wiki_name)";
 
@@ -48,7 +49,7 @@ class WikiPagesController extends ApplicationController {
 	}
 
 	function detail(){
-		$name = $this->breadcrumbs[] = $this->params->getString("name");
+		$name = $this->params->getString("name");
 		if(!strlen($name)){ return $this->_redirect_to_index(); }
 
 		if(!$wiki_page = $this->_find_wiki_page($name)){
@@ -59,9 +60,16 @@ class WikiPagesController extends ApplicationController {
 			return;
 		}
 
+		if(in_array($wiki_page->getName(),["Error404","Error403"])){
+			$this->_execute_action("error404");
+			return;
+		}
+
 		if($wiki_page->isDeleted()){
 			return $this->_execute_action("error404");
 		}
+		
+		$this->breadcrumbs[] = $wiki_page->getName();
 
 		$revision = $wiki_page->getRevision();
 

@@ -4,27 +4,44 @@ require_once(__DIR__."/application_base.php");
 class ApplicationController extends ApplicationBaseController{
 
 	function error404(){
+		$this->_output_error_page(404);
+	}
+
+	function error403(){
+		$this->_output_error_page(403);
+	}
+
+	function _output_error_page($code){
+		$method = "error$code";
+
 		if($this->request->xhr()){
-			return parent::error404();
+			return parent::$method();
 		}
 
-		if($this->_redirected_on_error404()){
+		if($code==404 && $this->_redirected_on_error404()){
 			return;
 		}
 
-		$page = Page::GetInstanceByCode("error404");
-		if(!$page){
-			return parent::error404();
+		$wiki_page = WikiPage::FindFirst("wiki_name","wiki","name","Error$code");
+
+		if(!$wiki_page){
+			return parent::$method();
 		}
 
-		$this->page_title = $page->getPageTitle();
-		$this->page_description = $page->getPageDescription();
-		$this->_add_page_to_breadcrumbs($page);
-		$this->response->setStatusCode(404);
-		$this->tpl_data["page"] = $page;
-		$this->template_name = "pages/detail";
+		$content = $wiki_page->getContent();
+		Atk14Require::Helper("modifier.wiki_markdown");
+		$content = smarty_modifier_wiki_markdown($content);
+		$pattern = '/^<h1(|\s[^>]*)>(?<page_title>.+?)<\/h1>/';
+		$content = preg_replace($pattern,'',$content); // odstraneni nadpisu <h1>
+
+		$this->page_title = $wiki_page->getTitle();
+		$this->tpl_data["content"] = $content;
+		$this->tpl_data["wiki_page"] = $wiki_page;
+
+		$this->response->setStatusCode($code);
+		$this->template_name = "wiki_pages/detail";
 	}
-	
+
 	function _add_page_to_breadcrumbs($page){
 		$pages = array($page);
 		$p = $page;
