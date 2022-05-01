@@ -18,7 +18,7 @@ definedef("DEFAULT_EMAIL","your@email.com");
 definedef("ATK14_ADMIN_EMAIL",DEFAULT_EMAIL); // the address for sending error reports and so on...
 
 definedef("ATK14_APPLICATION_NAME","PidiMidiWiki");
-definedef("ATK14_APPLICATION_DESCRIPTION","Yet another WIKI engine running on ATK14 Framework");
+definedef("ATK14_APPLICATION_DESCRIPTION","");
 
 definedef("ATK14_HTTP_HOST",PRODUCTION ? "www.pidi-midi-wiki.com" : "pidi-midi-wiki.localhost");
 
