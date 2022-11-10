@@ -75,7 +75,7 @@ class WikiPagesController extends ApplicationController {
 
 		$revision = $wiki_page->getRevision();
 
-		$this->page_title = $wiki_page->getName();
+		$this->page_title = $wiki_page->getTitle();
 
 		$content = $wiki_page->getContent();
 		Atk14Require::Helper("modifier.wiki_markdown");
