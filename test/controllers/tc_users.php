@@ -65,6 +65,8 @@ class TcUsers extends TcBase{
 		$john = User::FindByLogin("john.doe.tester");
 		$this->assertNotEquals("no_more_fears",$john->getPassword());
 		$this->assertTrue(MyBlowfish::IsHash($john->getPassword()));
+
+		$this->_logout_user();
 	}
 
 	function test_user_gives_a_proper_hash_as_password(){
@@ -178,6 +180,16 @@ class TcUsers extends TcBase{
 		$this->assertFalse($rambo->isPasswordCorrect("secret"));
 		$this->assertTrue($rambo->isPasswordCorrect("secret_no_more"));
 		$this->assertTrue(MyBlowfish::IsHash($rambo->getPassword()));
+
+		// password mismatch
+		$controller = $this->client->post("users/edit_password",array(
+			"current_password" => "secret_no_more",
+			"password" => "Secret1",
+			"password_repeat" => "Secret2",
+		));
+		$this->assertEquals(200,$this->client->getStatusCode());
+		$this->assertEquals(true,$controller->form->has_errors());
+		$this->assertEquals(["Password doesn't match"],$controller->form->get_errors("password_repeat"));
 
 		// bad try
 		$controller = $this->client->post("users/edit_password",array(

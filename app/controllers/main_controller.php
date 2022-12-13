@@ -22,6 +22,12 @@ class MainController extends ApplicationController{
 			$this->page_title = $page->getPageTitle();
 			$this->page_description = $page->getPageDescription();
 		}
+
+		if ($page && !$page->isIndexable()) {
+			$this->head_tags->setMetaTag("robots", "noindex,noarchive");
+			$this->head_tags->setMetaTag("googlebot", "noindex");
+		}
+		$this->head_tags->setCanonical($this->_build_canonical_url("main/index"));
 	}
 
 	function robots_txt(){

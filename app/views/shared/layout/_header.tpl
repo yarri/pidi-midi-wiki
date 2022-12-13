@@ -35,16 +35,15 @@
 							{!"user"|icon} {$logged_user->getLogin()}
 						</a>
 						<div class="dropdown-menu">
+							{if $logged_user->isAdmin()}
+								{a action="main/index" namespace="admin" _class="dropdown-item"}{!"wrench"|icon} {t}Administration{/t}{/a}
+								<div class="dropdown-divider"></div>
+							{/if}
 							<a href="{$user_profile_url}" class="dropdown-item">{t}Profile{/t}</a>
 							<div class="dropdown-divider"></div>
 							{a namespace="" action="logins/destroy" _method=post _class="dropdown-item"}{t}Sign out{/t}{/a}
 						</div>
 					</li>
-					{if $logged_user->isAdmin()}
-						<li class="nav-item">
-							{a action="main/index" namespace="admin" _class="nav-link"}{t}Administration{/t}{/a}
-						</li>
-					{/if}
 				{else}
 					{* user is not logged in *}
 					{* not on pidi-midi-wiki
