@@ -27,6 +27,7 @@ class AdminController extends ApplicationBaseController{
 		foreach(array(
 			array(_("Welcome screen"),			"main"),
 			array(_("Wiki Pages"),					"wiki_pages,wiki_attachments"),
+			array(_("System Components"),		"wiki_system_pages"),
 			//array(_("Articles"),						"articles"),
 			//array(_("Pages"),								"pages"),
 			//array(_("Link Lists"),					"link_lists,link_list_items"),

@@ -11,6 +11,12 @@ class ApplicationController extends ApplicationBaseController{
 		$this->_output_error_page(403);
 	}
 
+	function _application_before_filter(){
+		parent::_application_before_filter();
+
+		$this->tpl_data["footer_wiki_page"] = WikiSystemPage::FindFirst("wiki_name","system","name","Footer");
+	}
+
 	function _output_error_page($code){
 		$method = "error$code";
 
@@ -22,7 +28,7 @@ class ApplicationController extends ApplicationBaseController{
 			return;
 		}
 
-		$wiki_page = WikiPage::FindFirst("wiki_name","wiki","name","Error$code");
+		$wiki_page = WikiSystemPage::FindFirst("wiki_name","system","name","Error$code");
 
 		if(!$wiki_page){
 			return parent::$method();

@@ -14,7 +14,6 @@ class WikiPagesController extends ApplicationController {
 		$conditions[] = "wiki_name=:wiki_name";
 		$bind_ar[":wiki_name"] = $this->wiki_name;
 		$conditions[] = "NOT deleted";
-		$conditions[] = "name NOT IN ('Error404','Error403')";
 
 		$conditions[] = "revision=(SELECT MAX(revision) FROM wiki_pages wp WHERE wp.name=wiki_pages.name AND wp.wiki_name=wiki_pages.wiki_name)";
 
@@ -57,11 +56,6 @@ class WikiPagesController extends ApplicationController {
 			$this->template_name = "page_not_found";
 			$this->page_title = sprintf(_("Stránka %s nenalezena"),$name);
 			$this->response->setStatusCode(404);
-			return;
-		}
-
-		if(in_array($wiki_page->getName(),["Error404","Error403"])){
-			$this->_execute_action("error404");
 			return;
 		}
 

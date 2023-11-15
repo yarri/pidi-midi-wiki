@@ -1,13 +1,6 @@
 <div class="wiki">
 
-{dropdown_menu clearfix=false}
-	{if $wiki_page->isEditableBy($logged_user)}
-		{a namespace="admin" controller="wiki_pages" action="edit" id=$wiki_page}{!"edit"|icon} {t}Edit{/t}{/a}
-	{/if}
-	{if $wiki_page->isDeletableBy($logged_user)}
-		{a namespace="admin" controller="wiki_pages" action="destroy" id=$wiki_page}{!"remove"|icon} {t}Delete{/t}{/a}
-	{/if}
-{/dropdown_menu}
+{render partial="shared/admin_menu" wiki_page=$wiki_page}
 
 <h1>{$wiki_page->getTitle()}</h1>
 

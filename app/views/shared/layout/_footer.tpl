@@ -10,6 +10,9 @@
 		</div>
 		*}
 
-		<p>{t escape=no}This site runs on <a href="http://www.atk14.net/">ATK14 Framework</a>, for now and ever after{/t}</p>
+		{if $footer_wiki_page}
+			{render partial="shared/admin_menu" wiki_page=$footer_wiki_page}
+			{!$footer_wiki_page->getContent()|markdown}
+		{/if}
 	</div>
 </footer>
