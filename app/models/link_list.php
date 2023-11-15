@@ -36,6 +36,7 @@ class LinkList extends ApplicationModel implements Translatable, Rankable {
 	function getVisibleLinkListItems(){
 		$items = $this->getLinkListItems();
 		$items = array_filter($items,function($item){ return $item->isVisible(); });
+		$items = array_values($items);
 		return $items;
 	}
 
@@ -60,6 +61,25 @@ class LinkList extends ApplicationModel implements Translatable, Rankable {
 			"consider_visibility" => true,
 		);
 		return sizeof($options["consider_visibility"] ? $this->getVisibleLinkListItems() : $this->getLinkListItems())==0;
+	}
+
+	/**
+	 * Returns visible items packed as Menu14
+	 * 
+	 * @return Menu14|null
+	 */
+	function asSubmenu(){
+		$submenu = new Menu14();
+		foreach($this->getVisibleItems() as $l_item){
+			$item = $submenu->addItem($l_item->getTitle(),$l_item->getUrl());
+			$item->setMeta("image_url",$l_item->getImageUrl());
+			$item->setMeta("css_class",$l_item->getCssClass());
+			$item->setMeta("code",$l_item->getCode());
+		}
+		if($submenu->isEmpty()){
+			return null;
+		}
+		return $submenu;
 	}
 
 	function isDeletable(){
