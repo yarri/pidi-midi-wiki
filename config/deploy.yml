@@ -11,7 +11,9 @@ production:
   url: "https://pidi-midi-wiki.plovarna.cz/"
   server: "opal6.opalstack.com"
   user: "pidi_midi_wiki"
-  directory: "/home/{{user}}/apps/pidi_midi_wiki/"
+  home_dir: "/home/{{user}}"
+  env: "PATH={{home_dir}}/bin:$PATH"
+  directory: "{{home_dir}}/apps/pidi_midi_wiki/"
   deploy_repository: "{{user}}@{{server}}:repos/pidi_midi_wiki.git"
   before_deploy:
   - "@local composer update"
