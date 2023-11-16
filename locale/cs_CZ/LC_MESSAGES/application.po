@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 16:27+0200\n"
+"POT-Creation-Date: 2023-11-15 22:10+0100\n"
 "PO-Revision-Date: 2023-09-23 12:08+0200\n"
 "Last-Translator: Jaromir Tomek <jaromir.tomek@gmail.com>\n"
 "Language-Team: Team <team@email.com>\n"
@@ -64,7 +64,7 @@ msgid "Sign in as an admin user"
 msgstr "Přihlaste se jako administrátor"
 
 #: ../app/controllers/logins_controller.php:7
-#: ../app/controllers/password_recoveries_controller.php:81
+#: ../app/controllers/password_recoveries_controller.php:84
 #: ../app/forms/logins/create_new_form.php:16
 msgid "Sign in"
 msgstr "Přihlásit se"
@@ -92,6 +92,9 @@ msgstr "starší článek"
 
 msgid "At the moment there are no news."
 msgstr "V této chvíli nejsou žádné novinky."
+
+msgid "articles total"
+msgstr ""
 
 msgid ""
 "If you have any question, contact us through the following form. We will "
@@ -246,9 +249,6 @@ msgstr "ATK14 Skelet na GitHubu"
 msgid "Table of contents"
 msgstr "Obsah"
 
-msgid "This is not a visible page! It's not available to the public audience."
-msgstr "Toto není viditelná stránka! Není dostupná veřejnosti."
-
 msgid "Subpages"
 msgstr "Podstránky"
 
@@ -270,6 +270,13 @@ msgid ""
 msgstr ""
 "Pokud neobdržíte instrukce do několika minut, zkontrolujte spamovou složku a "
 "spamová filtry."
+
+msgid "Edit"
+msgstr "Upravit"
+
+#: ../app/forms/application_form.php:67
+msgid "Delete"
+msgstr "Smazat"
 
 msgid "Attachments"
 msgstr "Přílohy"
@@ -341,23 +348,21 @@ msgstr "zavřít"
 msgid "Change language"
 msgstr "Změnit jazyk"
 
-msgid ""
-"This site runs on <a href=\"http://www.atk14.net/\">ATK14 Framework</a>, for "
-"now and ever after"
+#: ../app/forms/wiki_pages/index_form.php:6
+#: ../app/forms/wiki_pages/index_form.php:10
+msgid "Hledat"
 msgstr ""
-"Tato aplikace běží na <a href=\"http://www.atk14.net/\">frameworku ATK14</a> "
-"až na věky"
+
+msgid "Administration"
+msgstr "Administrace"
 
 msgid "Profile"
 msgstr "Profil"
 
-#: ../app/controllers/logins_controller.php:33
+#: ../app/controllers/logins_controller.php:35
 #: ../app/forms/logins/destroy_form.php:4
 msgid "Sign out"
 msgstr "Odhlásit se"
-
-msgid "Administration"
-msgstr "Administrace"
 
 #: ../app/forms/users/create_new_form.php:22
 msgid "Register"
@@ -366,29 +371,14 @@ msgstr "Registrovat"
 msgid "Menu"
 msgstr "Nabídka"
 
-msgid "Photo gallery"
-msgstr "Fotogalerie"
-
 msgid "Previous"
 msgstr "Předchozí"
 
 msgid "Next"
 msgstr "Následující"
 
-msgid "Zavřít"
-msgstr "Zavřít"
-
-msgid "Zobrazování přes celou obrazovka"
-msgstr "Zobrazování přes celou obrazovka"
-
-msgid "Přiblížení"
-msgstr "Přiblížení"
-
-msgid "Předchozí (šipka doleva)"
-msgstr "Předchozí (šipka doleva)"
-
-msgid "Další (šipka doprava)"
-msgstr "Další (šipka doprava)"
+msgid "Photo gallery"
+msgstr "Fotogalerie"
 
 msgid "Here you can find the list of all commands in <em>%1</em>."
 msgstr "Zde neleznete seznam příkazů v <em>%1</em>."
@@ -418,6 +408,11 @@ msgstr "Nabízíme skvělé restful API"
 
 msgid "Recent articles"
 msgstr "Nejnovější články"
+
+#: ../app/controllers/articles_controller.php:11
+#: ../app/controllers/articles_controller.php:60
+msgid "Articles"
+msgstr "Články"
 
 msgid ""
 "You have been successfully registered and now you are logged in as <em>%1</"
@@ -455,11 +450,11 @@ msgstr "Jste administrátor?"
 msgid "Yes, you are"
 msgstr "Ano, jste"
 
-#: ../app/controllers/users_controller.php:48
+#: ../app/controllers/users_controller.php:52
 msgid "Change your account data"
 msgstr "Změnit vaše údaje"
 
-#: ../app/controllers/users_controller.php:76
+#: ../app/controllers/users_controller.php:80
 msgid "Change your password"
 msgstr "Změna vašeho hesla"
 
@@ -468,6 +463,30 @@ msgstr "Aktuální heslo"
 
 msgid "New password"
 msgstr "Nové heslo"
+
+msgid "Do you really want to delete page <em>%1</em>?"
+msgstr ""
+
+msgid "Nebyla nalezena ani jedna stránka."
+msgstr ""
+
+msgid "Stránka"
+msgstr ""
+
+msgid "Titulek"
+msgstr ""
+
+msgid "Datum poslední změny"
+msgstr ""
+
+msgid "Autor poslední změny"
+msgstr ""
+
+msgid "Stránka <em>%1</em> neexistuje."
+msgstr ""
+
+msgid "Vytvořit stránku?"
+msgstr ""
 
 #: ../app/controllers/api/logins_controller.php:33
 msgid "Bad password"
@@ -494,15 +513,15 @@ msgstr "Chyba 1"
 msgid "Error 2"
 msgstr "Chyba 2"
 
-#: ../app/controllers/application_base.php:28
+#: ../app/controllers/application_base.php:35
 msgid "Page not found"
 msgstr "Stránka nebyla nalezena"
 
-#: ../app/controllers/application_base.php:42
+#: ../app/controllers/application_base.php:49
 msgid "Forbidden"
 msgstr "Zakázáno"
 
-#: ../app/controllers/application_base.php:138
+#: ../app/controllers/application_base.php:149
 msgid "Home"
 msgstr "Domů"
 
@@ -522,7 +541,7 @@ msgstr "Vaše heslo bylo změněno"
 msgid "Message sent from contact page"
 msgstr "Zpráva zaslaná z kontaktní stránky"
 
-#: ../app/controllers/application.php:45
+#: ../app/controllers/application.php:68
 #: ../app/controllers/users_controller.php:5
 msgid "User profile"
 msgstr "Profil uživatele"
@@ -549,11 +568,6 @@ msgstr "Nemáte přístup k požadovanému zdroji"
 msgid "Sorry, An internal error happened"
 msgstr "Omlouváme se, nastala vnitřní chyba"
 
-#: ../app/controllers/articles_controller.php:11
-#: ../app/controllers/articles_controller.php:58
-msgid "Articles"
-msgstr "Články"
-
 #: ../app/controllers/articles_controller.php:15
 #, php-format
 msgid "Articles tagged with <em>%s</em>"
@@ -568,7 +582,7 @@ msgstr "Kontaktní zpráva"
 msgid "Contact message sent"
 msgstr "Kontaktní zpráva byla odeslána"
 
-#: ../app/controllers/logins_controller.php:16
+#: ../app/controllers/logins_controller.php:18
 #, php-format
 msgid ""
 "Wrong login and password combination. <a href=\"%s\">Have you forgotten your "
@@ -577,40 +591,40 @@ msgstr ""
 "Nesprávna kombinace loginu a hesla. <a href=\"%s\">Zapomněl jste své heslo?</"
 "a>"
 
-#: ../app/controllers/logins_controller.php:18
+#: ../app/controllers/logins_controller.php:20
 msgid "Wrong login and password combination"
 msgstr "Nesprávna kombinace loginu a hesla"
 
-#: ../app/controllers/logins_controller.php:25
+#: ../app/controllers/logins_controller.php:27
 #, php-format
 msgid "You have been successfully logged in as <em>%s</em>"
 msgstr "Byl jste úspěšně přihlášen jako <em>%s</em>"
 
-#: ../app/controllers/logins_controller.php:37
+#: ../app/controllers/logins_controller.php:39
 msgid "You have been successfully logged out"
 msgstr "Byl jste úspěšně odhlášen"
 
-#: ../app/controllers/logins_controller.php:37
+#: ../app/controllers/logins_controller.php:39
 #, php-format
 msgid "You've stayed logged in as <em>%s</em>"
 msgstr "Zůstal jste přihlášen jako <em>%s</em>"
 
-#: ../app/controllers/main_controller.php:11
+#: ../app/controllers/main_controller.php:18
 msgid "Welcome!"
 msgstr "Vítejte!"
 
-#: ../app/controllers/password_recoveries_controller.php:10
+#: ../app/controllers/password_recoveries_controller.php:13
 msgid "There is no such user with the given login or email"
 msgstr "Tady není uživatel s tímto loginem nebo e-mailem"
 
-#: ../app/controllers/password_recoveries_controller.php:14
+#: ../app/controllers/password_recoveries_controller.php:17
 msgid ""
 "This user account has been deactivated. Password recovery process can not be "
 "started."
 msgstr ""
 "Tento uživatelský účet byl deaktivován. Nelze zahájit proces obnovení hesla."
 
-#: ../app/controllers/password_recoveries_controller.php:18
+#: ../app/controllers/password_recoveries_controller.php:21
 msgid ""
 "Password recovery can not be initiated for this user. Email address is not "
 "set."
@@ -618,12 +632,12 @@ msgstr ""
 "Obnovení hesla nelze pro tohoto uživatele iniciovat. E-mailová adresa není "
 "nastavena."
 
-#: ../app/controllers/password_recoveries_controller.php:65
-#: ../app/controllers/users_controller.php:90
+#: ../app/controllers/password_recoveries_controller.php:68
+#: ../app/controllers/users_controller.php:94
 msgid "Your password has been updated successfully"
 msgstr "Vaše heslo bylo úspěšně změněno"
 
-#: ../app/controllers/password_recoveries_controller.php:82
+#: ../app/controllers/password_recoveries_controller.php:85
 msgid "Password recovery"
 msgstr "Obnovení hesla"
 
@@ -631,7 +645,7 @@ msgstr "Obnovení hesla"
 msgid "To register as a new user, sign out first"
 msgstr "Abyste se mohl zaregistrovat, napřed se odhlaste"
 
-#: ../app/controllers/users_controller.php:35
+#: ../app/controllers/users_controller.php:37
 #, php-format
 msgid ""
 "You have been successfully registered and now you are logged in as <em>%s</"
@@ -639,19 +653,19 @@ msgid ""
 msgstr ""
 "Byl(a) jste úspěšně zaregistrován(a) a teď jste přihlášen(a) jako <em>%s</em>"
 
-#: ../app/controllers/users_controller.php:44
+#: ../app/controllers/users_controller.php:46
 msgid "Thank you for your registration!"
 msgstr "Děkujeme za vaši registraci!"
 
-#: ../app/controllers/users_controller.php:54
+#: ../app/controllers/users_controller.php:58
 msgid "Nothing has been changed"
 msgstr "Nic nebylo změněno"
 
-#: ../app/controllers/users_controller.php:61
+#: ../app/controllers/users_controller.php:65
 msgid "This email address is used by another user."
 msgstr "Stejná e-mailová adresa je již použita pro jiného uživatele."
 
-#: ../app/controllers/users_controller.php:70
+#: ../app/controllers/users_controller.php:74
 #, php-format
 msgid ""
 "Your account data has been updated. Next time you should sign-in with login "
@@ -660,13 +674,27 @@ msgstr ""
 "Údaje vašeho účtu byly aktualizovány. Příště byste se měl/a přihlásit pomocí "
 "přihlašovacího jména <em>%s</em>."
 
-#: ../app/controllers/users_controller.php:70
+#: ../app/controllers/users_controller.php:74
 msgid "Your account data has been updated"
 msgstr "Údaje vašeho účtu byly změněny"
 
-#: ../app/controllers/users_controller.php:80
+#: ../app/controllers/users_controller.php:84
 msgid "This is not your current password"
 msgstr "Toto neni vaše aktuální heslo"
+
+#: ../app/controllers/wiki_pages_controller.php:8
+msgid "Vyhledávání"
+msgstr ""
+
+#: ../app/controllers/wiki_pages_controller.php:21
+#, php-format
+msgid "Vyhledávání: „%s“"
+msgstr ""
+
+#: ../app/controllers/wiki_pages_controller.php:57
+#, php-format
+msgid "Stránka %s nenalezena"
+msgstr ""
 
 #: ../app/fields/async_file_field.php:12
 msgid "The file has been already deleted on the server, please upload it again"
@@ -676,11 +704,11 @@ msgstr "Soubor již byl na serveru smazán, nahrajte jej prosím znovu"
 msgid "The file was not fully uploaded, please upload it again"
 msgstr "Soubor nebyl plně nahrán, nahrajte jej prosím znovu"
 
-#: ../app/fields/boolean_with_select_field.php:7
+#: ../app/fields/boolean_with_select_field.php:11
 msgid "Ano"
 msgstr "Ano"
 
-#: ../app/fields/boolean_with_select_field.php:8
+#: ../app/fields/boolean_with_select_field.php:12
 msgid "Ne"
 msgstr "Ne"
 
@@ -779,10 +807,6 @@ msgstr "Hledat"
 msgid "Update"
 msgstr "Aktualizovat"
 
-#: ../app/forms/application_form.php:67
-msgid "Delete"
-msgstr "Smazat"
-
 #: ../app/forms/application_form.php:69
 msgid "Save"
 msgstr "Uložit"
@@ -791,20 +815,20 @@ msgstr "Uložit"
 msgid "Search query"
 msgstr "Vyhledávací dotaz"
 
-#: ../app/forms/contact_messages/create_new_form.php:18
+#: ../app/forms/application_form.php:99
 msgid "Sign up for newsletter"
 msgstr "Přihlásit se k odběru newsletteru"
 
-#: ../app/forms/contact_messages/create_new_form.php:24
+#: ../app/forms/contact_messages/create_new_form.php:20
 msgid "Text"
 msgstr "Text"
 
+#: ../app/forms/contact_messages/create_new_form.php:26
 #: ../app/forms/contact_messages/create_new_form.php:30
-#: ../app/forms/contact_messages/create_new_form.php:34
 msgid "Spam protection"
 msgstr "Ochrana proti spamu"
 
-#: ../app/forms/contact_messages/create_new_form.php:40
+#: ../app/forms/contact_messages/create_new_form.php:36
 msgid "Send message"
 msgstr "Poslat zprávu"
 
@@ -867,6 +891,34 @@ msgstr "Heslo (opakování)"
 msgid "Password doesn't match"
 msgstr "Heslo se neshoduje"
 
+#: ../app/forms/wiki_attachments/create_new_form.php:6
+msgid "Soubor"
+msgstr ""
+
+#: ../app/forms/wiki_attachments/create_new_form.php:11
+msgid "Nahradit přílohu se stejným názvem"
+msgstr ""
+
+#: ../app/forms/wiki_attachments/create_new_form.php:15
+msgid "Nahrát přílohu"
+msgstr ""
+
+#: ../app/forms/wiki_pages/destroy_form.php:6
+msgid "I do confirm the page deletion"
+msgstr ""
+
+#: ../app/forms/wiki_pages/wiki_pages_form.php:6
+msgid "Obsah"
+msgstr ""
+
+#: ../app/forms/wiki_pages/wiki_pages_form.php:10
+msgid "Označení stránky ve formátu Wiki"
+msgstr ""
+
+#: ../app/helpers/block.drink_shortcode__person.php:17
+msgid "More"
+msgstr ""
+
 #: ../app/helpers/modifier.display_bool.php:13
 msgid "Yes"
 msgstr "Ano"
@@ -887,13 +939,21 @@ msgstr "Galerie"
 msgid "Obrázek"
 msgstr "Obrázek"
 
-#: ../app/models/user.php:82
+#: ../app/models/user.php:113
+msgid "deleted user"
+msgstr ""
+
+#: ../app/models/user.php:115
 msgid "inactive user"
 msgstr "neaktivní uživatel"
 
-#: ../app/models/user.php:85
+#: ../app/models/user.php:118
 msgid "administrator"
 msgstr "administrátor"
+
+#: ../app/widgets/async_file_input.php:20
+msgid "Remove file"
+msgstr ""
 
 #: ../app/widgets/async_pupiq_attachment_input.php:41
 #: ../app/widgets/pupiq_attachment_input.php:41
@@ -909,6 +969,32 @@ msgstr "Stáhnout přílohu"
 #: ../app/widgets/pupiq_image_input.php:46
 msgid "Display image"
 msgstr "Zobrazit obrázek"
+
+#~ msgid ""
+#~ "This is not a visible page! It's not available to the public audience."
+#~ msgstr "Toto není viditelná stránka! Není dostupná veřejnosti."
+
+#~ msgid ""
+#~ "This site runs on <a href=\"http://www.atk14.net/\">ATK14 Framework</a>, "
+#~ "for now and ever after"
+#~ msgstr ""
+#~ "Tato aplikace běží na <a href=\"http://www.atk14.net/\">frameworku ATK14</"
+#~ "a> až na věky"
+
+#~ msgid "Zavřít"
+#~ msgstr "Zavřít"
+
+#~ msgid "Zobrazování přes celou obrazovka"
+#~ msgstr "Zobrazování přes celou obrazovka"
+
+#~ msgid "Přiblížení"
+#~ msgstr "Přiblížení"
+
+#~ msgid "Předchozí (šipka doleva)"
+#~ msgstr "Předchozí (šipka doleva)"
+
+#~ msgid "Další (šipka doprava)"
+#~ msgstr "Další (šipka doprava)"
 
 #~ msgid ""
 #~ "Only letters, numbers, dots and dashes are allowed. Up to 50 characters."
@@ -1065,9 +1151,6 @@ msgstr "Zobrazit obrázek"
 #~ msgstr ""
 #~ "Určitě chcete smazat článek\n"
 #~ "%1?"
-
-#~ msgid "Edit"
-#~ msgstr "Upravit"
 
 #~ msgid "Delete article"
 #~ msgstr "Smazat článek"

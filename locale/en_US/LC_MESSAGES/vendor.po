@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 16:27+0200\n"
+"POT-Creation-Date: 2023-11-15 22:10+0100\n"
 "PO-Revision-Date: 2022-04-25 16:30+0200\n"
 "Last-Translator: Jaromir Tomek <jaromir.tomek@gmail.com>\n"
 "Language-Team: \n"
@@ -43,78 +43,9 @@ msgstr ""
 msgid "The file was not fully uploaded, please upload it again"
 msgstr "The file was not fully uploaded, please upload it again"
 
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_dispatcher.php:73
-msgid "Service Unavailable"
-msgstr "Service Unavailable"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_dispatcher.php:74
-msgid "This site is in maintenance. Please come back later."
-msgstr "This site is in maintenance. Please come back later."
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_form.php:247
-msgid "The form contains errors, therefore it cannot be processed."
-msgstr "The form contains errors, therefore it cannot be processed."
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_form.php:539
-msgid "Please, submit the form again"
-msgstr "Please, submit the form again"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:70
-msgid "atk14.date_format"
+#: ../vendor/atk14/async-file-field/src/app/widgets/async_file_input.php:20
+msgid "Remove file"
 msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:90
-msgid "atk14.parse_date_pattern"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:124
-msgid "atk14.datetime_format"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:137
-msgid "atk14.parse_datetime_pattern"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:150
-msgid "atk14.datetime_with_seconds_format"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:162
-msgid "atk14.parse_datetime_with_seconds_pattern"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:179
-msgid "atk14.number_format.decimal_point"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_locale.php:194
-msgid "atk14.number_format.thousands_separator"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/atk14_sorting.php:162
-msgid "Sort table by this column"
-msgstr ""
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/block.a_destroy.php:42
-msgid "Are you sure?"
-msgstr "Are you sure?"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/function.paginator.php:58
-msgid "items total"
-msgstr "items total"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/function.paginator.php:93
-msgid "Prev"
-msgstr "Prev"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/function.paginator.php:94
-msgid "Next"
-msgstr "Next"
-
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/function.to_sentence.php:13
-#: ../vendor/atk14/drink-markdown/vendor/atk14/core/src/helpers/modifier.to_sentence.php:12
-msgid "and"
-msgstr "and"
 
 #: ../vendor/atk14/hcaptcha-field/src/app/fields/hcaptcha_field.php:8
 #: ../vendor/atk14/recaptcha-field/src/app/fields/recaptcha_field.php:11
@@ -154,15 +85,15 @@ msgstr "Plain text body"
 msgid "No mail has been sent"
 msgstr "No mail has been sent"
 
-#: ../vendor/atk14/phone-field/src/phone_field.php:7
+#: ../vendor/atk14/phone-field/src/phone_field.php:53
 msgid "Enter phone number in format %sample_phone_number%"
 msgstr "Enter phone number in format %sample_phone_number%"
 
-#: ../vendor/atk14/phone-field/src/phone_field.php:18
+#: ../vendor/atk14/phone-field/src/phone_field.php:77
 msgid "Enter valid phone number (%sample_phone_number%)"
 msgstr "Enter valid phone number (%sample_phone_number%)"
 
-#: ../vendor/atk14/phone-field/src/phone_field.php:19
+#: ../vendor/atk14/phone-field/src/phone_field.php:78
 msgid "Enter phone number"
 msgstr "Enter phone number"
 
@@ -208,6 +139,107 @@ msgstr "Write something like black-cat-white-cat"
 #: ../vendor/atk14/url-field/src/url_field.php:13
 msgid "This doesn't look like an URL"
 msgstr "This doesn't look like an URL"
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php:9
+msgid "Nový obrázek nebo příloha"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php:22
+#, php-format
+msgid "Příloha se stejným názvem (%s) u této stránky již existuje"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php:27
+msgid "Příloha byla nahrazena"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_attachments_controller.php:34
+msgid "Příloha byla nahrána"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:60
+#, php-format
+msgid "Stránka %s nenalezena"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:83
+#, php-format
+msgid "%s (rev %s)"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:100
+msgid "Vytvořit novou stránku"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:104
+msgid "Nadpis"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:112
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:132
+msgid "Stránka s tímto jménem již existuje"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:122
+msgid "Editace stránky"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/controllers/admin/wiki_pages_controller.php:152
+#, php-format
+msgid "Deleting page %s"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_attachments/create_new_form.php:6
+msgid "Soubor"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_attachments/create_new_form.php:11
+msgid "Nahradit přílohu se stejným názvem"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages/destroy_form.php:6
+msgid "I do confirm the page deletion"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages/index_form.php:6
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages/index_form.php:10
+msgid "Hledat"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages/wiki_pages_form.php:6
+msgid "Obsah"
+msgstr ""
+
+#: ../vendor/atk14/wiki-pages/src/app/forms/admin/wiki_pages/wiki_pages_form.php:11
+msgid "Označení stránky ve formátu Wiki"
+msgstr ""
+
+#~ msgid "Service Unavailable"
+#~ msgstr "Service Unavailable"
+
+#~ msgid "This site is in maintenance. Please come back later."
+#~ msgstr "This site is in maintenance. Please come back later."
+
+#~ msgid "The form contains errors, therefore it cannot be processed."
+#~ msgstr "The form contains errors, therefore it cannot be processed."
+
+#~ msgid "Please, submit the form again"
+#~ msgstr "Please, submit the form again"
+
+#~ msgid "Are you sure?"
+#~ msgstr "Are you sure?"
+
+#~ msgid "items total"
+#~ msgstr "items total"
+
+#~ msgid "Prev"
+#~ msgstr "Prev"
+
+#~ msgid "Next"
+#~ msgstr "Next"
+
+#~ msgid "and"
+#~ msgstr "and"
 
 #~ msgid "Hello World!"
 #~ msgstr "Hello World!"
