@@ -20,6 +20,6 @@
         "yarri/markdown-manual.mdbook": "^0.3",
         "atk14/async-file-field": "^1.0",
         "yarri/keywords-highlighter": "^0.1.2",
-        "atk14/wiki-pages": "dev-master"
+        "atk14/wiki-pages": "^0.1"
     }
 }
