@@ -11,10 +11,10 @@
 			// Application-wide code.
 			init: function() {
 				ADMIN.utils.handleSortables();
-				ADMIN.utils.handleSuggestions();
-				ADMIN.utils.handleTagsSuggestions();
+				window.UTILS.Suggestions.handleSuggestions();
+				window.UTILS.Suggestions.handleTagsSuggestions();
 				ADMIN.utils.initializeMarkdonEditors();
-				ADMIN.utils.handleXhrImageUpload();
+				UTILS.AsyncImageUploader.init();
 				ADMIN.utils.handleCopyIobjectCode();
 
 				// Form hints.
@@ -107,70 +107,6 @@
 				} );
 			},
 
-			handleXhrImageUpload: function() {
-				
-				$( ".js--xhr_upload_image_form" ).each( function() {
-
-					var $form = $( this );
-					var $wrap = $form.closest(".js--image_gallery_wrap");
-					var $dropZone = $form.closest(".drop-zone");
-					var highglightDropZone = function() { $dropZone.addClass("drop-zone-highlight"); };
-					var unhighglightDropZone = function() { $dropZone.removeClass("drop-zone-highlight"); };
-
-					$dropZone.on( "dragenter",  highglightDropZone );
-					$dropZone.on( "dragover",  highglightDropZone );
-					$dropZone.on( "dragleave",  unhighglightDropZone );
-					$dropZone.on( "drop",  unhighglightDropZone );
-
-					var url = $form.attr( "action" ),
-						$progress = $wrap.find( ".progress-bar" ),
-						$list = $wrap.find( ".list-group-images" ),
-						$input = $form.find("input");
-						$input.data("url",url);
-
-					$input.fileupload( {
-						dropZone: $dropZone,
-						dataType: "json",
-						multipart: false,
-						start: function() {
-							$progress.show();
-						},
-						progressall: function( e, data ) {
-							var progress = parseInt( data.loaded / data.total * 100, 10 );
-
-							$progress.css(
-								"width",
-								progress + "%"
-							);
-						},
-						done: function( e, data ) {
-
-							// This is the same grip like in handleSortables
-							var glyph = "<span class='fas fa-grip-vertical text-secondary handle pr-3' " +
-								" title='sorting'></span>";
-
-							$( data.result.image_gallery_item )
-								.addClass( "not-processed" )
-								.prepend( glyph )
-								.appendTo( $list );
-
-							$list.sortable( "refresh" );
-						},
-						stop: function() {
-							$list.find( ".not-processed" )
-								.prepend( "<span class='glyphicon glyphicon-align-justify'></span>" )
-								.removeClass( "not-processed" );
-
-							$progress.hide().css(
-								"width",
-								"0"
-							);
-						}
-					} );
-
-				} );
-			},
-
 			handleFormErrors: function( errors ) {
 				$.each( errors, function( field, errorList ) {
 					var $field = $( "#id_" + field ),
@@ -200,123 +136,44 @@
 			// ADMIN.utils.handleFormErrors();
 			// ADMIN.utils.handleFormErrors( ".list-sortable" );
 			// ADMIN.utils.handleFormErrors( $element.find( "ul" ) );
-			handleSortables: function( sortable ) {
 
+			handleSortables: function() {
 				// Sortable lists.
-				if ( sortable === undefined ) {
-					$sortable = $( ".list-sortable" );
-				} else {
-					$sortable = $( sortable );
-				}
 
 				var $sortable = $( ".list-sortable" ),
 					glyph = "<span class='fas fa-grip-vertical text-secondary handle pr-3' " +
-						" title='sorting'></span>",
-					url, $item, data, $list, id;
-
+						" title='sorting'></span>";
+					
 				if ( $sortable.length ) {
 					$sortable.find( ".list-group-item" ).prepend( glyph );
 
-					$sortable.sortable( {
-						cancel: "strong",
-						handle: ".handle",
-						opacity: 0.9,
-						update: function( jqEv, ui ) {
-							$item = $( ui.item );
-							$list = $item.closest( ".list-sortable" );
-							url = $list.data( "sortable-url" );
-							id = $list.data( "sortable-param" ) || "id";
-							data = {
-								rank: $item.index()
-							};
-							data[ id ] = $item.data( "id" );
-
-							$.ajax( {
-								type: "POST",
-								url: url,
-								data: data,
-								success: function() {
-								},
-								error: function() {
-								}
-							} );
-						}
-					} );
-				}
-			},
-
-			// Suggests anything according by an url
-			handleSuggestions: function() {
-				$( document ).on( "keyup.autocomplete", "[data-suggesting='yes']", function(){
-					$( this ).autocomplete( {
-						source: function( request, response ) {
-							var $el = this.element,
-								url = $el.data( "suggesting_url" ),
-								term;
-							term = request.term;
-
-							$.getJSON( url, { q: term }, function( data ) {
-								response( data );
-							} );
-						}
-					} );
-				} );
-			},
-
-			// Suggests tags
-			handleTagsSuggestions: function() {
-				$( document ).on( "keyup.autocomplete", "[data-tags_suggesting='yes']", function() {
-					var $input = $( this ),
-						lang = $( "html" ).attr( "lang" ),
-						url = "/api/" + lang + "/tags_suggestions/?format=json&q=",
-						cache = {},
-						term, terms;
-
-					function split( val ) {
-						return val.split( /,\s*/ );
-					}
-					function extractLast( t ) {
-						return split( t ).pop();
-					}
-
-					if ( !$input.length ) {
-						return;
-					}
-
-					$input.autocomplete( {
-						minLength: 1,
-						source: function( request, response ) {
-							term = extractLast( request.term );
-
-							if ( term in cache ) {
-								response( cache[ term ] );
-							} else {
-								$.getJSON( url + term, function( data ) {
-									cache[ term ] = data;
-									response( data );
+					$sortable.each( function( i, el ) {
+						// eslint-disable-next-line no-undef
+						new Sortable( el, {
+							handle: ".handle",
+							onUpdate: function( e ) {
+								var $list = $( e.target );
+								var $item = $( e.item );
+								var url = $list.data( "sortable-url" );
+								var id = $list.data( "sortable-param" ) || "id";
+								var data = {
+									rank: $item.index()
+								};
+								data[ id ] = $item.data( "id" );
+								
+								$.ajax( {
+									type: "POST",
+									url: url,
+									data: data,
+									success: function() {
+									},
+									error: function() {
+									}
 								} );
 							}
-						},
-						search: function() {
-							term = extractLast( this.value );
-
-							if ( term.length < 1 ) {
-								return false;
-							}
-						},
-						focus: function() {
-							return false;
-						},
-						select: function( event, ui ) {
-							terms = split( this.value );
-							terms.pop();
-							terms.push( ui.item.value );
-							terms.push( "" );
-							this.value = terms.join( " , " );
-							return false;
-						}
+						} );
 					} );
-				} );
+				}
 			},
 
 			// Copy iobject to clipboard
